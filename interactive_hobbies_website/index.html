@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Temukan Hobi Baru</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>Selamat datang di Situs Temukan Hobi Baru!</h1>
+    <nav>
+      <ul>
+        <li><a href="index.html">Beranda</a></li>
+        <li><a href="about.html">Tentang Kami</a></li>
+        <li><a href="hobbies.html">Hobi</a></li>
+        <li><a href="contact.html">Kontak</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="calculator">
+    <h2>Temukan Hobi yang Tepat untuk Anda!</h2>
+    <p>Isi kalkulator ini untuk menemukan hobi yang cocok dengan minat Anda.</p>
+    <form id="hobby-form">
+      <label for="time">Berapa banyak waktu yang Anda miliki per minggu?</label>
+      <input type="number" id="time" placeholder="Contoh: 5" required>
+      
+      <label for="energy">Seberapa banyak energi yang Anda miliki?</label>
+      <select id="energy" required>
+        <option value="">Pilih Energi</option>
+        <option value="high">Tinggi</option>
+        <option value="medium">Sedang</option>
+        <option value="low">Rendah</option>
+      </select>
+      
+      <button type="submit">Temukan Hobi!</button>
+    </form>
+
+    <div id="result"></div>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Temukan Hobi Baru. Semua hak dilindungi.</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

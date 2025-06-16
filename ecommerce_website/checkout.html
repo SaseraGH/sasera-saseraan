@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Checkout</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <h1>Toko Online</h1>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="index.html">Beranda</a></li>
+        <li><a href="cart.html">Keranjang</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="checkout">
+    <h2>Checkout</h2>
+    <form id="checkout-form">
+      <label for="name">Nama:</label>
+      <input type="text" id="name" name="name" required>
+
+      <label for="address">Alamat Pengiriman:</label>
+      <textarea id="address" name="address" required></textarea>
+
+      <label for="payment">Metode Pembayaran:</label>
+      <select id="payment" name="payment">
+        <option value="credit">Kartu Kredit</option>
+        <option value="bank">Transfer Bank</option>
+      </select>
+
+      <button type="submit">Proses Pembayaran</button>
+    </form>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Toko Online. Semua hak dilindungi.</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
