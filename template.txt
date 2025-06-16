@@ -1,0 +1,711 @@
+TEMPLATE INPUT DATA 
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Semua Input</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <h2>Form Semua Input</h2>
+    <form id="mainForm">
+      <label>Nama:</label>
+      <input type="text" name="nama" required />
+
+      <label>Umur:</label>
+      <input type="number" name="umur" />
+
+      <label>Password:</label>
+      <input type="password" name="password" />
+
+      <label>Email:</label>
+      <input type="email" name="email" />
+
+      <label>Tanggal Lahir:</label>
+      <input type="date" name="tanggal" />
+
+      <label>Waktu Sekarang:</label>
+      <input type="time" name="waktu" />
+
+      <label>Warna Favorit:</label>
+      <input type="color" name="warna" />
+
+      <label>Upload Foto:</label>
+      <input type="file" name="gambar" accept="image/*" />
+
+      <label>Jenis Kelamin:</label>
+      <label><input type="radio" name="gender" value="Laki-laki" /> Laki-laki</label>
+      <label><input type="radio" name="gender" value="Perempuan" /> Perempuan</label>
+
+      <label>Hobi:</label>
+      <label><input type="checkbox" name="hobi" value="Membaca" /> Membaca</label>
+      <label><input type="checkbox" name="hobi" value="Menulis" /> Menulis</label>
+      <label><input type="checkbox" name="hobi" value="Gaming" /> Gaming</label>
+
+      <label>Jurusan:</label>
+      <select name="jurusan">
+        <option value="Informatika">Informatika</option>
+        <option value="Bisnis">Bisnis</option>
+        <option value="Desain">Desain</option>
+      </select>
+
+      <label>Pesan Tambahan:</label>
+      <textarea name="pesan" rows="3"></textarea>
+
+      <button type="submit">Kirim</button>
+    </form>
+
+    <div id="output"></div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+body {
+  font-family: sans-serif;
+  background-color: #f2f2f2;
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+}
+
+.container {
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  width: 400px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+form label {
+  display: block;
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+input, select, textarea {
+  width: 100%;
+  padding: 6px;
+  margin-top: 4px;
+  margin-bottom: 10px;
+}
+
+button {
+  margin-top: 10px;
+  padding: 8px 12px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+}
+
+#output {
+  margin-top: 20px;
+  background: #eee;
+  padding: 15px;
+  border-radius: 8px;
+}
+
+
+
+
+
+document.getElementById("mainForm").addEventListener("submit", function (e) {
+  e.preventDefault();
+
+  const form = e.target;
+  const data = new FormData(form);
+  let outputHTML = "<h3>Hasil Input:</h3>";
+
+  // Tampilkan semua input biasa
+  for (let [key, value] of data.entries()) {
+    if (key === "gambar") continue; // handle gambar terpisah
+    outputHTML += `<p><strong>${key}:</strong> ${value}</p>`;
+  }
+
+  // Tampilkan semua checkbox
+  const hobi = [];
+  form.querySelectorAll('input[name="hobi"]:checked').forEach((el) =>
+    hobi.push(el.value)
+  );
+  outputHTML += `<p><strong>Hobi:</strong> ${hobi.join(", ")}</p>`;
+
+  // Tampilkan gambar
+  const file = form.gambar.files[0];
+  if (file) {
+    const imgURL = URL.createObjectURL(file);
+    outputHTML += `<p><strong>Gambar:</strong></p><img src="${imgURL}" width="200" />`;
+  }
+
+  document.getElementById("output").innerHTML = outputHTML;
+});
+
+
+
+
+
+
+
+
+
+TEMPLATE BUTTON
+
+🟦 index.html
+html
+Salin
+Edit
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Jenis-Jenis Tombol</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <h2>Jenis-Jenis Tombol</h2>
+
+    <button id="defaultBtn">Tombol Biasa</button>
+
+    <button id="submitBtn" type="submit">Tombol Submit</button>
+
+    <button id="resetBtn" type="reset">Tombol Reset</button>
+
+    <button id="dangerBtn" class="danger">Tombol Merah (Bahaya)</button>
+
+    <button id="successBtn" class="success">Tombol Hijau (Sukses)</button>
+
+    <button id="disabledBtn" disabled>Tombol Nonaktif</button>
+
+    <button id="iconBtn">🔍 Cari</button>
+
+    <button id="alertBtn">Tampilkan Alert</button>
+
+    <div id="output"></div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
+🎨 style.css
+css
+Salin
+Edit
+body {
+  font-family: Arial, sans-serif;
+  display: flex;
+  justify-content: center;
+  background-color: #f2f2f2;
+  margin-top: 50px;
+}
+
+.container {
+  background: #fff;
+  padding: 30px;
+  border-radius: 10px;
+  width: 400px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+button {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  margin: 8px 0;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+  border: none;
+  background-color: #ddd;
+  transition: 0.3s;
+}
+
+button:hover {
+  background-color: #bbb;
+}
+
+button.success {
+  background-color: #4caf50;
+  color: white;
+}
+
+button.danger {
+  background-color: #f44336;
+  color: white;
+}
+
+button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+#output {
+  margin-top: 20px;
+  background: #eee;
+  padding: 10px;
+  border-radius: 6px;
+}
+🟨 script.js
+javascript
+Salin
+Edit
+document.getElementById("defaultBtn").onclick = () => {
+  setOutput("Tombol biasa diklik.");
+};
+
+document.getElementById("submitBtn").onclick = () => {
+  setOutput("Tombol submit diklik (meskipun tidak di dalam form).");
+};
+
+document.getElementById("resetBtn").onclick = () => {
+  setOutput("Tombol reset diklik (biasanya mengosongkan form).");
+};
+
+document.getElementById("dangerBtn").onclick = () => {
+  setOutput("Tombol bahaya diklik! Hati-hati.");
+};
+
+document.getElementById("successBtn").onclick = () => {
+  setOutput("Tombol sukses diklik! Aksi berhasil.");
+};
+
+document.getElementById("alertBtn").onclick = () => {
+  alert("Ini alert dari tombol!");
+};
+
+function setOutput(text) {
+  document.getElementById("output").innerText = text;
+}
+
+
+
+
+
+
+
+
+
+
+TEMPLATE HEADER & FOOTER
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Contoh Header & Footer</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <header>
+    <h1>Website Saya</h1>
+    <nav>
+      <a href="#">Beranda</a>
+      <a href="#">Tentang</a>
+      <a href="#">Kontak</a>
+    </nav>
+  </header>
+
+  <main>
+    <h2>Selamat Datang!</h2>
+    <p>Ini adalah isi utama dari halaman.</p>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Website Saya. Semua Hak Dilindungi.</p>
+  </footer>
+
+</body>
+</html>
+🎨 style.css
+css
+Salin
+Edit
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background: #f2f2f2;
+  color: #333;
+}
+
+header {
+  background-color: #4caf50;
+  color: white;
+  padding: 20px;
+  text-align: center;
+}
+
+header nav {
+  margin-top: 10px;
+}
+
+header nav a {
+  margin: 0 10px;
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+header nav a:hover {
+  text-decoration: underline;
+}
+
+main {
+  padding: 30px;
+  background: white;
+  min-height: 300px;
+}
+
+footer {
+  background-color: #333;
+  color: white;
+  text-align: center;
+  padding: 15px;
+  position: relative;
+  bottom: 0;
+  width: 100%;
+}
+
+
+
+TEMPLATE TABLE
+
+🟦 index.html
+html
+Salin
+Edit
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contoh Tabel Data</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <div class="container">
+    <h2>Data Mahasiswa</h2>
+
+    <table>
+      <thead>
+        <tr>
+          <th>No</th>
+          <th>Nama</th>
+          <th>Jurusan</th>
+        </tr>
+      </thead>
+      <tbody id="tabel-body">
+        <tr>
+          <td>1</td>
+          <td>Sasera</td>
+          <td>Bisnis Digital</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <button id="tambah-btn">Tambah Baris</button>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
+🎨 style.css
+css
+Salin
+Edit
+body {
+  font-family: Arial, sans-serif;
+  background: #f4f4f4;
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
+}
+
+.container {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  width: 500px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 15px;
+}
+
+th, td {
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: center;
+}
+
+th {
+  background-color: #4caf50;
+  color: white;
+}
+
+tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+button {
+  padding: 8px 12px;
+  background-color: #2196f3;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #0b7dda;
+}
+🟨 script.js
+javascript
+Salin
+Edit
+let count = 2; // dimulai dari 2 karena baris pertama sudah ada
+
+document.getElementById("tambah-btn").addEventListener("click", () => {
+  const tbody = document.getElementById("tabel-body");
+
+  const row = document.createElement("tr");
+  row.innerHTML = `
+    <td>${count}</td>
+    <td>Nama ${count}</td>
+    <td>Jurusan ${count}</td>
+  `;
+
+  tbody.appendChild(row);
+  count++;
+});
+
+
+
+
+TEMPLATE FOTO DAN VIDEO
+
+🟦 index.html
+html
+Salin
+Edit
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Media Foto & Video</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <div class="container">
+    <h2>Galeri Media</h2>
+
+    <h3>📸 Foto</h3>
+    <img src="https://via.placeholder.com/300x200" alt="Contoh Gambar" class="media-img" />
+    <input type="file" id="uploadFoto" accept="image/*" />
+    <br/><br/>
+
+    <h3>🎥 Video</h3>
+    <video controls width="300" id="videoPlayer">
+      <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4" />
+      Browser tidak mendukung video.
+    </video>
+    <br/>
+    <input type="file" id="uploadVideo" accept="video/*" />
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
+🎨 style.css
+css
+Salin
+Edit
+body {
+  font-family: Arial, sans-serif;
+  background: #f4f4f4;
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+}
+
+.container {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  width: 350px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+h2, h3 {
+  text-align: center;
+}
+
+.media-img {
+  width: 100%;
+  margin-bottom: 10px;
+  border-radius: 8px;
+}
+🟨 script.js
+javascript
+Salin
+Edit
+const uploadFoto = document.getElementById("uploadFoto");
+const uploadVideo = document.getElementById("uploadVideo");
+const imgTag = document.querySelector(".media-img");
+const videoTag = document.getElementById("videoPlayer");
+
+uploadFoto.addEventListener("change", function () {
+  const file = this.files[0];
+  if (file) {
+    const url = URL.createObjectURL(file);
+    imgTag.src = url;
+  }
+});
+
+uploadVideo.addEventListener("change", function () {
+  const file = this.files[0];
+  if (file) {
+    const url = URL.createObjectURL(file);
+    videoTag.src = url;
+    videoTag.load();
+  }
+});
+
+
+
+
+
+
+TEMPLATE LINK
+🟦 index.html
+html
+Salin
+Edit
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Jenis-Jenis Link</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <div class="container">
+    <h2>Contoh Semua Jenis Link</h2>
+
+    <!-- 1. Teks biasa bisa diklik -->
+    <p>
+      👉 Klik <a href="https://www.google.com" target="_blank">di sini</a> untuk ke Google.
+    </p>
+
+    <!-- 2. Tombol yang jika diklik mengarah ke link -->
+    <a href="https://youtube.com/@Saseraa" target="_blank">
+      <button>Kunjungi Channel Sasera</button>
+    </a>
+
+    <!-- 3. Gambar yang bisa diklik dan masuk ke link -->
+    <a href="https://www.instagram.com" target="_blank">
+      <img src="https://via.placeholder.com/300x150" alt="Klik ke Instagram" class="clickable-img" />
+    </a>
+
+    <!-- 4. Div atau kotak teks yang jadi link -->
+    <a href="https://chat.openai.com" target="_blank" class="box-link">
+      <div class="link-box">🔗 Kotak Klik ke ChatGPT</div>
+    </a>
+  </div>
+
+</body>
+</html>
+🎨 style.css
+css
+Salin
+Edit
+body {
+  font-family: Arial, sans-serif;
+  background: #f4f4f4;
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
+}
+
+.container {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  width: 400px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  text-align: center;
+}
+
+a {
+  text-decoration: none;
+  color: blue;
+}
+
+button {
+  padding: 10px 20px;
+  margin-top: 10px;
+  background-color: #2196f3;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #0b7dda;
+}
+
+.clickable-img {
+  margin-top: 15px;
+  width: 100%;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.clickable-img:hover {
+  transform: scale(1.03);
+}
+
+.link-box {
+  margin-top: 20px;
+  padding: 15px;
+  background-color: #eee;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.link-box:hover {
+  background-color: #ddd;
+}	
